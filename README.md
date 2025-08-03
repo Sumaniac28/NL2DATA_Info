@@ -67,7 +67,7 @@ The project is built on a modern, scalable monorepo architecture, with a clear s
 
 ## 🏁 Getting Started
 
-To get NL2Data running on your local machine, please follow these steps.
+To get NL2DATA running on your local machine, please follow these steps.
 
 ### Prerequisites
 
@@ -75,87 +75,101 @@ To get NL2Data running on your local machine, please follow these steps.
 -   **Package Manager:** npm or yarn
 -   **Database:** A running instance of PostgreSQL
 
-### Installation & Configuration
+# NL2DATA: Installation & Configuration Guide
 
-1.  **Clone the repository:**
+This guide provides instructions for setting up the client and server for the NL2Data application. Since the client and server are in separate repositories, you will need to clone and configure each one individually.
 
-    ```bash
-    git clone https://github.com/your-username/nl2data.git
-    cd nl2data
-    ```
+---
 
-2.  **Install client dependencies:**
+## 1. Server Setup
 
-    ```bash
-    cd client
-    npm install
-    ```
+First, let's set up the backend server.
 
-3.  **Install server dependencies:**
+#### a. Clone the server repository:
+```bash
+git clone https://github.com/Sumaniac28/NL2DATA_SERVER.git
+cd NL2DATA_SERVER
+```
 
-    ```bash
-    cd ../server
-    npm install
-    ```
+#### b. Install server dependencies:
+```bash
+npm install
+```
 
-4.  **Configure environment variables:**
+#### c. Configure environment variables:
+Create a `.env` file in the `NL2DATA_SERVER` directory and add your specific configurations.
 
-    -   **Client:** Create a `.env` file in the `client` directory:
+```env
+NODE_ENV=development
+PORT=5000
+DB_HOST=your_db_host
+DB_PORT=your_db_port
+DB_USERNAME=your_db_username
+DB_PASSWORD=your_db_password
+DB_DATABASE=your_db_name
+TEST_DB_HOST=your_test_db_host
+TEST_DB_PORT=your_test_db_port
+TEST_DB_USERNAME=your_test_db_username
+TEST_DB_PASSWORD=your_test_db_password
+TEST_DB_DATABASE=your_test_db_name
+ENCRYPTION_SECRET=a_strong_secret_key_for_encryption
+SECRET_KEY_ONE=a_long_and_random_secret_key
+SECRET_KEY_TWO=another_long_and_random_secret_key
+REACT_URL=http://localhost:3000
+JWT_ACCESS_SECRET=your_jwt_secret_for_access_tokens
+DB_SSL=false
+CLAUDE_API_KEY=your_anthropic_claude_api_key
+```
 
-        ```env
-        VITE_API_URL=http://localhost:5000/graphql
-        ```
+#### d. Run database migrations:
+This command will set up the necessary database tables.
+```bash
+npm run migration:run
+```
 
-    -   **Server:** Create a `.env` file in the `server` directory with your specific configurations:
+---
 
-        ```env
-        NODE_ENV=development
-        PORT=5000
-        DB_HOST=your_db_host
-        DB_PORT=your_db_port
-        DB_USERNAME=your_db_username
-        DB_PASSWORD=your_db_password
-        DB_DATABASE=your_db_name
-        TEST_DB_HOST=your_test_db_host
-        TEST_DB_PORT=your_test_db_port
-        TEST_DB_USERNAME=your_test_db_username
-        TEST_DB_PASSWORD=your_test_db_password
-        TEST_DB_DATABASE=your_test_db_name
-        ENCRYPTION_SECRET=a_strong_secret_key_for_encryption
-        SECRET_KEY_ONE=a_long_and_random_secret_key
-        SECRET_KEY_TWO=another_long_and_random_secret_key
-        REACT_URL=http://localhost:3000
-        JWT_ACCESS_SECRET=your_jwt_secret_for_access_tokens
-        DB_SSL=false
-        CLAUDE_API_KEY=your_anthropic_claude_api_key
-        ```
+## 2. Client Setup
 
-5.  **Run database migrations:**
+Now, let's set up the frontend client in a **separate terminal window or directory**.
 
-    ```bash
-    cd server
-    npm run migration:run
-    ```
+#### a. Clone the client repository:
+```bash
+git clone https://github.com/Sumaniac28/NL2DATA-CLIENT.git
+cd NL2DATA-CLIENT
+```
+
+#### b. Install client dependencies:
+```bash
+npm install
+```
+
+#### c. Configure environment variables:
+Create a `.env` file in the `NL2DATA-CLIENT` directory. This tells the client where to send API requests.
+
+```env
+VITE_API_URL=http://localhost:5000/graphql
+```
+
+---
 
 ## 🏃‍♀️ How to Use
 
-1.  **Start the backend server:**
+To run the application, you need to start both the backend server and the frontend client.
 
+1.  **Start the backend server:**
+    In your `NL2DATA_SERVER` directory, run:
     ```bash
-    cd server
     npm run dev
     ```
 
 2.  **Start the frontend client:**
-
+    In your `NL2DATA-CLIENT` directory, run:
     ```bash
-    cd client
     npm run dev
     ```
 
-3.  **Access the application:**
-
-    Open your web browser and navigate to `http://localhost:3000`.
+Once both are running, you can access the application at the URL provided by the client's development server (usually `http://localhost:3000` or a similar address).
 
 ## 🤝 Contributing
 
